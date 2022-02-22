@@ -71,7 +71,7 @@ function App(){
 
   //Se não for o rover de teste adicionar o radio dos movimentos e mostrar a posição de entrada do segundo rover;
   function AddCoordenate(){
-    if (coordenate === undefined) {
+    if (coordenate === '') {
       window.alert('Digite o valor da Coordenada');     
     } else {
       divEnterX.style.display = 'none';
