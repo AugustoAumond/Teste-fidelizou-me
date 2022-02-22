@@ -34,7 +34,7 @@ function App(){
       window.alert('Digite o valor de X'); 
     } else {
       setX(parseInt(document.querySelector('#enterX').value));
-      divEnterY.style.display = 'flex';
+      document.querySelector('#DiventerY').style.display = 'flex';
     }  
   }
 
