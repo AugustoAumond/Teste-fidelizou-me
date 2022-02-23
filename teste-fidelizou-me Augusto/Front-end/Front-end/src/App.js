@@ -26,39 +26,51 @@ function ShowDatas (data, counter){
 
 
 //Filtrar a categoria selecionada pelo usuário;
-function SearchIF(data, search, select, type, index, newData){
-  if ((search !== undefined) && (select === type)){
-    data.map((data)=>{
-      if (data.name !== undefined) {
-        if(data.name.toUpperCase().includes(search.toUpperCase())) {
-          newData[index] = data;
-          index++;
-          document.querySelector('#resultpesq').style.display = 'block'; 
-          JSON.stringify(sessionStorage.setItem('index', index));
-        } 
-        return newData;              
-      }         
-    })
-  } 
-}
-
-//Filtrar a categoria selecionada pelo usuário;
 function Search(data, select, search){
   let newData = [];
-  let type1 = 'Nome';
-  let type2 = 'Endereço';
-  let type3 = 'Estado'
   let index = 0;
   JSON.stringify(sessionStorage.setItem('HistoricSearch', search));
   let histSearch = search;
   OpenSearch(select, search, histSearch);
-
-    SearchIF(data, search, select, type1, index, newData)
-
-    SearchIF(data, search, select, type2, index, newData)
-
-    SearchIF(data, search, select, type3, index, newData)
-
+   if ((search !== undefined) && (select === 'Nome')){
+      data.map((data)=>{
+        if (data.name !== undefined) {
+          if(data.name.toUpperCase().includes(search.toUpperCase())) {
+            newData[index] = data;
+            index++;
+            document.querySelector('#resultpesq').style.display = 'block'; 
+            JSON.stringify(sessionStorage.setItem('index', index));
+          } 
+          return newData;              
+        }         
+      })
+    } 
+    else if ((search !== undefined) && (select === 'Endereço')){
+      data.map((data)=>{
+        if (data.address !== undefined) {
+          if(data.address.toUpperCase().includes(search.toUpperCase())) {
+            newData[index] = data;
+            index++;
+            document.querySelector('#resultpesq').style.display = 'block';
+            JSON.stringify(sessionStorage.setItem('index', index));
+          }    
+          return newData;
+        }         
+      }) 
+    } 
+    else if ((search !== undefined) && (select === 'Estado')){
+      data.map((data)=>{
+        if (data.state !== undefined) {
+          if(data.state.toUpperCase().includes(search.toUpperCase())) {
+            newData[index] = data;
+            index++;
+            document.querySelector('#resultpesq').style.display = 'block';
+            JSON.stringify(sessionStorage.setItem('index', index));
+          }  
+          return newData; 
+        }         
+      })
+    } 
     return  newData;
 }
 
