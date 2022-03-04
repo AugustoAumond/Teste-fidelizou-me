@@ -145,6 +145,7 @@ function App(){
     setCounter(JSON.parse(sessionStorage.getItem('index')));
     JSON.stringify(sessionStorage.setItem('select', select));
     setData(Search(data, select, search));
+    document.querySelector('#adic').style.display = 'none';
   }
 
 
@@ -177,6 +178,13 @@ function App(){
     })
   }
 
+  const addSelect = (value) => {
+    setSelect(value);
+    setCounter (20);
+    setSearch('');
+    document.querySelector('#adic').style.display = 'flex';
+  }
+
 
   return (
     <Fragment>
@@ -187,7 +195,7 @@ function App(){
         <DivSearch>
           <strong> Filtrar por:  </strong>
           <DivSelect>
-            <select name="select" value={select} onChange={e => setSelect(e.currentTarget.value)}> 
+            <select name="select" value={select} onChange={e => addSelect(e.currentTarget.value)}> 
             <option value=''> Selecione o filtro  </option>
             <option value='Nome'> Nome </option>
             <option value='Endereço'> Endereço </option>
@@ -222,7 +230,7 @@ function App(){
         {SetDiv(ShowDatas(data, counter))}
 
         <DivProxSelect>
-          <ButtonPlus onClick={(()=> AdicCounter(counter))}> Próximo </ButtonPlus>
+          <ButtonPlus id='adic' onClick={(()=> AdicCounter(counter))}> Próximo </ButtonPlus>
         </DivProxSelect>
 
     </Fragment>
@@ -409,4 +417,3 @@ text-align: center;
 font-size: 28px;
 margin-top: 90px;
 `
-
